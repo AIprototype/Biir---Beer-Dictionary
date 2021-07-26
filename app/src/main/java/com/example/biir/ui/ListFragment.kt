@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.biir.R
 import com.example.biir.databinding.FragmentListBinding
 import com.example.biir.di.ViewModelFactory
@@ -28,6 +29,7 @@ class ListFragment : Fragment(), ItemClickListener {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: FragmentListBinding
     private lateinit var beerListAdapter: BeerListAdapter
+    private lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -66,7 +68,9 @@ class ListFragment : Fragment(), ItemClickListener {
     }
 
     private fun setUi() {
+        gridLayoutManager = GridLayoutManager(requireActivity(), 2)
         beerListAdapter = BeerListAdapter(BeerItemDiffCallBack(), this)
+        binding.root.beer_list_rv.layoutManager = gridLayoutManager
         binding.root.beer_list_rv.adapter = beerListAdapter
 
         beerListAdapter.addLoadStateListener {
