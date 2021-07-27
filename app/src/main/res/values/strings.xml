@@ -2,4 +2,9 @@
     <string name="app_name">Biir</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="abv">ABV</string>
+    <string name="ibu">IBU</string>
+    <string name="smooth">Smooth</string>
+    <string name="bitter">Bitter</string>
+    <string name="hipster_plus">Hipster Plus</string>
 </resources>
