@@ -15,13 +15,24 @@ class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
-    val beerListLiveData =MutableLiveData<ArrayList<BeerListDetailResponseModel>>()
+    private val beerListLiveData = MutableLiveData<ArrayList<BeerListDetailResponseModel>>()
+    private val beerItemLiveData = MutableLiveData<BeerListDetailResponseModel>()
 
     fun apiData(): Flow<PagingData<BeerListDetailResponseModel>> {
         return mainRepository.getBeerList().cachedIn(viewModelScope)
     }
 
-    fun beerListDataListener(): MutableLiveData<ArrayList<BeerListDetailResponseModel>> {
-        return beerListLiveData
+    fun updateBeerListLiveData(list: ArrayList<BeerListDetailResponseModel>) {
+        beerListLiveData.value = list
+    }
+
+    fun prepDataForDetailPage(pos: Int) {
+        if(beerListLiveData.value != null) {
+            beerItemLiveData.value = beerListLiveData.value!![pos]
+        }
+    }
+
+    fun beerItemLiveDataListener(): MutableLiveData<BeerListDetailResponseModel> {
+        return beerItemLiveData
     }
 }

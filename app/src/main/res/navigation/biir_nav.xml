@@ -14,7 +14,7 @@
             android:id="@+id/navigateToDetailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/detailFragment"
         android:name="com.example.biir.ui.DetailFragment"
         android:label="fragment_detail"
@@ -22,5 +22,5 @@
         <action
             android:id="@+id/navigateToListFragment"
             app:destination="@id/listFragment" />
-    </fragment>
+    </dialog>
 </navigation>

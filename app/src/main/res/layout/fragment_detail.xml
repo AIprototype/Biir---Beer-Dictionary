@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="beerItem"
+            type="com.example.biir.data.network.models.response.BeerListDetailResponseModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@android:color/holo_green_dark"
-        android:layout_height="match_parent">
+        android:theme="@style/BottomSheetDialogTheme"
+        android:id="@+id/bottomSheetContainer"
+        android:background="@drawable/bottom_sheet_background"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv2"
+            android:id="@+id/beer_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="2"
-            android:textSize="40sp"
+            tools:text="Punk API"
+            android:text="@{beerItem.name}"
+            android:padding="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/sep_line"
+            app:layout_constraintTop_toBottomOf="@+id/beer_item_name"
+            android:background="@color/cardview_dark_background"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</layout>

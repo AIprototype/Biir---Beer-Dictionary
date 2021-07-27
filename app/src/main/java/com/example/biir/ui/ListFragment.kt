@@ -92,6 +92,8 @@ class ListFragment : Fragment(), ItemClickListener {
     }
 
     override fun onClick(view: View?, position: Int, isLongClick: Boolean) {
-        Toast.makeText(requireActivity(), "clicked $position", Toast.LENGTH_SHORT).show()
+        mainViewModel.updateBeerListLiveData(beerListAdapter.snapshot().items as ArrayList)
+        mainViewModel.prepDataForDetailPage(position)
+        Navigation.findNavController(binding.root).navigate(R.id.navigateToDetailFragment)
     }
 }
