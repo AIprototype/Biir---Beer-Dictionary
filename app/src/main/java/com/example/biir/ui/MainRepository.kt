@@ -17,4 +17,8 @@ class MainRepository @Inject constructor(
             BeerListPagingSource(apiInterface)
         }
     ).flow
+
+    fun testFunction() {
+        Unit
+    }
 }
