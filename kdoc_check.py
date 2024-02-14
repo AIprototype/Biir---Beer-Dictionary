@@ -2,6 +2,10 @@ import subprocess
 import re
 
 
+# Get the base branch from environment variable
+base_branch = os.environ.get("BASE_BRANCH", "master")  # default to 'master' if not set
+
+
 def run_command(command):
     """Runs a shell command and returns the output."""
     result = subprocess.run(command, stdout=subprocess.PIPE, shell=True, check=True)
@@ -10,7 +14,8 @@ def run_command(command):
 
 def get_changed_files():
     """Returns a list of changed .kt files in the PR."""
-    files = run_command("git diff --name-only origin/main").splitlines()
+    command = f"git diff --name-only {base_branch}...HEAD"
+    files = run_command(command).splitlines()
     return [f for f in files if f.endswith('.kt')]
 
 
