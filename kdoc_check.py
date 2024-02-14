@@ -22,7 +22,7 @@ def get_changed_files():
 
 def get_file_diff(file_path):
     """Returns the diff of the given file."""
-    return run_command(f"git diff origin/main -- {file_path}")
+    return run_command(f"git diff {base_branch} -- {file_path}")
 
 
 def check_kdoc_in_function(function):
