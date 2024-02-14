@@ -8,6 +8,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
+
+      - name: Fetch base branch
+        run: |
+          BASE_BRANCH=${{ github.base_ref }}
+          git fetch origin $BASE_BRANCH:$BASE_BRANCH
+          git checkout $BASE_BRANCH
+          git checkout -
       
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -16,3 +25,5 @@ jobs:
       
       - name: Run KDoc check script
         run: python kdoc_check.py
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
