@@ -15,8 +15,7 @@ jobs:
         run: |
           BASE_BRANCH=${{ github.base_ref }}
           git fetch origin $BASE_BRANCH:$BASE_BRANCH
-          git checkout $BASE_BRANCH
-          git checkout -
+          git branch --set-upstream-to=origin/$BASE_BRANCH
       
       - name: Setup Python
         uses: actions/setup-python@v2
